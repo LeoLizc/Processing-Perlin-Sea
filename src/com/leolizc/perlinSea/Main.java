@@ -29,6 +29,26 @@ public class Main extends PApplet {
 
         stroke(0);
         perlinSea.render();
+
+        textSize(20);
+        fill(0);
+        textAlign(CENTER, TOP);
+        text("scale: " + perlinSea.scale + "\nintensity: " + perlinSea.intensity, 0,-height/2f);
+    }
+
+    public void keyPressed(){
+        if(key==CODED){
+            if(keyCode==UP){
+                perlinSea.scale+=0.01f;
+            }else if(keyCode==DOWN){
+                perlinSea.scale-=0.01f;
+            }
+            if(keyCode==LEFT){
+                perlinSea.intensity-=1;
+            }else if(keyCode==RIGHT){
+                perlinSea.intensity+=1;
+            }
+        }
     }
 
 
