@@ -5,9 +5,7 @@ import processing.core.PApplet;
 public class PerlinSea {
     PApplet p;
     float scale = 0.02f;
-    private float size = 450, segments = 20, step = size/segments;
-    float intensity = 30;
-
+    float intensity = 30;    private float size = 450, segments = 20, step = size / segments;
     public PerlinSea(PApplet p) {
         init(p);
     }
@@ -15,7 +13,7 @@ public class PerlinSea {
     public PerlinSea(
             PApplet p,
             float size
-    ){
+    ) {
         init(p, size);
     }
 
@@ -23,7 +21,7 @@ public class PerlinSea {
             PApplet p,
             float size,
             float segments
-    ){
+    ) {
         init(p, size, segments);
     }
 
@@ -33,18 +31,18 @@ public class PerlinSea {
             float segments,
             float scale,
             float intensity
-    ){
+    ) {
         init(p, size, segments, scale, intensity);
     }
 
-    private void init(PApplet p){
+    private void init(PApplet p) {
         init(p, 450);
     }
 
     private void init(
             PApplet p,
             float size
-    ){
+    ) {
         init(p, size, 20);
     }
 
@@ -52,7 +50,7 @@ public class PerlinSea {
             PApplet p,
             float size,
             float segments
-    ){
+    ) {
         init(p, size, segments, 0.02f, 30);
     }
 
@@ -62,13 +60,13 @@ public class PerlinSea {
             float segments,
             float scale,
             float intensity
-    ){
+    ) {
         this.p = p;
         this.size = size;
         this.segments = segments;
         this.scale = scale;
         this.intensity = intensity;
-        step = size/segments;
+        step = size / segments;
     }
 
     public void render() {
@@ -80,7 +78,7 @@ public class PerlinSea {
         p.noFill();
 
         // 20x20 squares From x = -200 to 200, draw a line from y = -200 to 200
-        float halfSize = size/2f;
+        float halfSize = size / 2f;
 
         p.beginShape();
         horizontalLine(halfSize);
@@ -97,30 +95,27 @@ public class PerlinSea {
         p.popMatrix();
     }
 
-    private void horizontalLine(float y){
-        float halfSize = size/2f;
+    private void horizontalLine(float y) {
+        float halfSize = size / 2f;
         for (float x = -halfSize; x < halfSize; x += step) {
             vertex(x, y);
         }
     }
-    
-    private float noise(float x, float y){
+
+    private float noise(float x, float y) {
         return p.noise(x * scale, y * scale);
     }
-    
-    private void vertex(float x, float y){
-        x=p.constrain(x, -size/2f, size/2f);
-        y=p.constrain(y, -size/2f, size/2f);
 
-        p.vertex(x, y, noise(x,y)*intensity);
-//        p.vertex(x, y, 5);
+    private void vertex(float x, float y) {
+
+        p.vertex(x, y, noise(x, y) * intensity);
     }
-
-    // GETTERS AND SETTERS
 
     public float getSize() {
         return size;
     }
+
+    // GETTERS AND SETTERS
 
     public void setSize(float size) {
         this.size = size;
@@ -132,6 +127,8 @@ public class PerlinSea {
 
     public void setSegments(float segments) {
         this.segments = segments;
-        step = size/segments;
+        step = size / segments;
     }
+
+
 }

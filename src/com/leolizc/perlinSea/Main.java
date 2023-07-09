@@ -29,8 +29,6 @@ public class Main extends PApplet {
 
         stroke(0);
         perlinSea.render();
-//        stroke(255,0,0);
-//        rect(-450f/2f,-450f/2f,450f,450f);
     }
 
 
