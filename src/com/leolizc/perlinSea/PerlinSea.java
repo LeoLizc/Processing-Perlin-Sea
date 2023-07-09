@@ -17,14 +17,21 @@ public class PerlinSea {
 
         // 20x20 squares From x = -200 to 200, draw a line from y = -200 to 200
         p.beginShape();
-        p.vertex(-200, 200, 0);
+        horizontalLine(200);
         for (int y = 200; y > -200; y -= 20) {
             for (int x = 200; x >= -200; x -= 20) {
-                p.vertex(x, y, 0);
-                p.vertex(x, y - 20, 0);
+                p.vertex(x, y, p.noise(x,y)*30);
+                p.vertex(x, y - 20, p.noise(x,y-20)*30);
             }
+            horizontalLine(y - 20);
         }
-        p.vertex(200, -200, 0);
+        p.vertex(200, -200, p.noise(-200,-200)*30);
         p.endShape();
+    }
+
+    private void horizontalLine(float y){
+        for (int x = -200; x < 200; x += 20) {
+            p.vertex(x, y, p.noise(x,y)*30);
+        }
     }
 }
